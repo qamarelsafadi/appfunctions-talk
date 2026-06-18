@@ -70,9 +70,9 @@
     --text-tertiary: #80868b;
     --text-accent: #1a73e8;
 
-    /* Gradients — Light and clean with I/O brand gradient */
+    /* Gradients — Light and clean with core Google brand colors */
     --gradient-hero: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%);
-    --gradient-io: linear-gradient(90deg, var(--io-blue), var(--io-cyan), var(--io-green), var(--io-yellow), var(--io-orange), var(--io-red), var(--io-pink), var(--io-purple), var(--io-blue));
+    --gradient-io: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green), var(--g-blue));
     --gradient-gemini: var(--gradient-io);
     --gradient-gemini-text: var(--gradient-io);
     --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 100%);
