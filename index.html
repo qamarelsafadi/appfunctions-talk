@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="From Android Apps to MCPs with AppFunctions — A conference talk on turning Android apps into on-device MCP-style servers by Qamar A. Safadi">
+  <title>From Android Apps to MCPs with AppFunctions — Qamar A. Safadi</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+<body>
+
+<div class="presentation" id="presentation">
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Slide Counter -->
+  <div class="slide-counter">
+    <span class="current" id="currentSlide">01</span>
+    <span>/</span>
+    <span id="totalSlides">17</span>
+  </div>
+
+  <!-- Navigation Hint -->
+  <div class="nav-hint">
+    <span><kbd>←</kbd> <kbd>→</kbd> navigate</span>
+    <span><kbd>F</kbd> fullscreen</span>
+  </div>
+
+  <!-- Fullscreen Button -->
+  <button class="fullscreen-btn" id="fullscreenBtn" aria-label="Toggle fullscreen">⛶</button>
+
+  <!-- ============================================================
+       SLIDE 1 — Title
+       ============================================================ -->
+  <div class="slide active" id="slide-1" data-slide="1">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="top: -10%; right: -5%;"></div>
+    <div class="orb orb--purple" style="bottom: -10%; left: -5%;"></div>
+    <div class="orb orb--coral" style="top: 40%; right: 20%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">
+        <span>🤖</span>
+        <span>Android + AI</span>
+      </div>
+
+      <h1 class="slide-title slide-title--hero">
+        From Android Apps to MCPs<br>with AppFunctions
+      </h1>
+
+      <p class="slide-subtitle" style="margin: 0 auto;">
+        Turn your app into an on-device MCP-style server for AI agents
+      </p>
+
+      <p class="slide-speaker mt-xl">
+        <strong>Qamar A. Safadi</strong> · Senior Android Engineer at Yassir 💜
+      </p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 2 — The Problem
+       ============================================================ -->
+  <div class="slide" id="slide-2" data-slide="2">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="top: 10%; left: -10%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">The Problem</div>
+
+      <p class="slide-big-text">
+        Users shouldn't need to open<br><em>5 apps</em> to do <em>1 task</em>
+      </p>
+
+      <div class="app-silos mt-xl">
+        <div class="app-silo">
+          <div class="app-icon" style="background: rgba(66,133,244,0.08); border-color: rgba(66,133,244,0.15);">📅</div>
+          <span class="app-name">Calendar</span>
+        </div>
+        <div class="app-silo">
+          <div class="app-icon" style="background: rgba(0,230,118,0.08); border-color: rgba(0,230,118,0.15);">💬</div>
+          <span class="app-name">Messages</span>
+        </div>
+        <div class="app-silo">
+          <div class="app-icon" style="background: rgba(253,216,53,0.08); border-color: rgba(253,216,53,0.15);">👤</div>
+          <span class="app-name">Contacts</span>
+        </div>
+        <div class="app-silo">
+          <div class="app-icon" style="background: rgba(255,82,82,0.08); border-color: rgba(255,82,82,0.15);">🗺️</div>
+          <span class="app-name">Maps</span>
+        </div>
+        <div class="app-silo">
+          <div class="app-icon" style="background: rgba(161,66,244,0.08); border-color: rgba(161,66,244,0.15);">📝</div>
+          <span class="app-name">Notes</span>
+        </div>
+      </div>
+
+      <div class="glass-card glass-card--compact mt-xl" style="max-width: 600px;">
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          <span class="highlight">Key insight:</span> AI agents need <strong>structured access</strong> to apps — not UI automation
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 3 — What Are AppFunctions?
+       ============================================================ -->
+  <div class="slide" id="slide-3" data-slide="3">
+    <div class="grid-bg"></div>
+    <div class="orb orb--purple" style="top: -15%; right: 10%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">Concept</div>
+
+      <h2 class="slide-title">What Are AppFunctions?</h2>
+
+      <p class="slide-subtitle" style="margin: 0 auto;">
+        Your app becomes an <span class="highlight">on-device MCP-style server</span> for AI agents
+      </p>
+
+      <div class="diagram mt-xl">
+        <div class="diagram-node diagram-node--accent">
+          <span class="icon">📱</span>
+          Your App
+        </div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node diagram-node--purple">
+          <span class="icon">🏷️</span>
+          @AppFunction
+        </div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node">
+          <span class="icon">📇</span>
+          System Index
+        </div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node diagram-node--green">
+          <span class="icon">🔍</span>
+          Agent Discovery
+        </div>
+        <span class="diagram-arrow">→</span>
+        <div class="diagram-node diagram-node--coral">
+          <span class="icon">⚡</span>
+          Execution
+        </div>
+      </div>
+
+      <div class="glass-card glass-card--compact mt-xl" style="max-width: 550px;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          Self-describing functions that AI agents can discover, understand, and invoke — <strong>no intents, no deep links, no boilerplate</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 4 — Architecture
+       ============================================================ -->
+  <div class="slide" id="slide-4" data-slide="4">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="bottom: -15%; right: -10%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">Architecture</div>
+
+      <h2 class="slide-title">Full Pipeline</h2>
+
+      <div class="arch-flow mt-xl">
+        <div class="arch-step" style="background: rgba(66,133,244,0.06); border: 1px solid rgba(66,133,244,0.2); border-radius: var(--radius-md);">
+          <span class="arch-icon">✍️</span>
+          <span class="arch-label">@AppFunction<br>+ KDoc</span>
+          <span class="arch-sub">Developer defines intent</span>
+        </div>
+        <div class="arch-connector">→</div>
+        <div class="arch-step" style="background: rgba(161,66,244,0.06); border: 1px solid rgba(161,66,244,0.2); border-radius: var(--radius-md);">
+          <span class="arch-icon">⚙️</span>
+          <span class="arch-label">KSP<br>Compiler</span>
+          <span class="arch-sub">Generates metadata</span>
+        </div>
+        <div class="arch-connector">→</div>
+        <div class="arch-step" style="background: rgba(253,216,53,0.06); border: 1px solid rgba(253,216,53,0.2); border-radius: var(--radius-md);">
+          <span class="arch-icon">📇</span>
+          <span class="arch-label">System<br>Index</span>
+          <span class="arch-sub">Functions registered</span>
+        </div>
+        <div class="arch-connector">→</div>
+        <div class="arch-step" style="background: rgba(0,230,118,0.06); border: 1px solid rgba(0,230,118,0.2); border-radius: var(--radius-md);">
+          <span class="arch-icon">🔎</span>
+          <span class="arch-label">AppFunction<br>Manager</span>
+          <span class="arch-sub">Agent discovery</span>
+        </div>
+        <div class="arch-connector">→</div>
+        <div class="arch-step" style="background: rgba(245,56,160,0.06); border: 1px solid rgba(245,56,160,0.2); border-radius: var(--radius-md);">
+          <span class="arch-icon">⚡</span>
+          <span class="arch-label">PlatformApp<br>FunctionService</span>
+          <span class="arch-sub">Execution</span>
+        </div>
+      </div>
+
+      <p class="slide-subtitle mt-xl" style="margin: 0 auto; font-size: 1.1rem;">
+        Think of it as <span class="text-gradient" style="font-weight: 700;">MCP, but for Android apps</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 5 — What We're Building
+       ============================================================ -->
+  <div class="slide" id="slide-5" data-slide="5">
+    <div class="grid-bg"></div>
+    <div class="orb orb--coral" style="top: -10%; left: 10%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">Demo App</div>
+
+      <h2 class="slide-title">What We're Building</h2>
+
+      <p class="slide-subtitle" style="margin: 0 auto;">
+        A Chat App with <span class="highlight">agent-ready capabilities</span>
+      </p>
+
+      <div class="cards-grid cards-grid--3 mt-xl" style="max-width: 900px;">
+        <div class="glass-card glass-card--accent">
+          <div class="card-icon">🔍</div>
+          <div class="card-title">searchContacts</div>
+          <div class="card-text">Find users by name or query. Returns matching contacts for the agent to act on.</div>
+        </div>
+        <div class="glass-card" style="border-color: rgba(0,230,118,0.2); background: rgba(0,230,118,0.04);">
+          <div class="card-icon">💬</div>
+          <div class="card-title">sendMessage</div>
+          <div class="card-text">Send an SMS to a resolved contact. Requires a prior searchContacts call.</div>
+        </div>
+        <div class="glass-card" style="border-color: rgba(245,56,160,0.2); background: rgba(245,56,160,0.04);">
+          <div class="card-icon">📞</div>
+          <div class="card-title">makeCall</div>
+          <div class="card-text">Initiate a phone call to a contact. Also requires searchContacts first.</div>
+        </div>
+      </div>
+
+      <div class="dep-flow mt-xl">
+        <div class="dep-node" style="border-color: rgba(66,133,244,0.3); color: var(--g-blue-light);">searchContacts</div>
+        <span class="dep-arrow">→</span>
+        <div class="dep-branch">
+          <div class="dep-node" style="border-color: rgba(0,230,118,0.3); color: var(--g-green-light);">sendMessage</div>
+          <div class="dep-node" style="border-color: rgba(245,56,160,0.3); color: var(--g-pink);">makeCall</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 6 — Dependencies
+       ============================================================ -->
+  <div class="slide" id="slide-6" data-slide="6">
+    <div class="grid-bg"></div>
+    <div class="orb orb--purple" style="bottom: -10%; left: -5%;"></div>
+
+    <div class="slide-content stagger">
+      <div class="slide-eyebrow">Setup</div>
+
+      <h2 class="slide-title">Dependencies</h2>
+
+      <div class="code-block mt-lg" data-lang="Gradle (Kotlin DSL)">
+<code><span class="token-comment">// build.gradle.kts</span>
+
+<span class="token-keyword">plugins</span> {
+    <span class="token-function">id</span>(<span class="token-string">"com.google.devtools.ksp"</span>)
+}
+
+<span class="token-keyword">dependencies</span> {
+    <span class="token-comment">// Core AppFunctions API</span>
+    <span class="token-function">implementation</span>(<span class="token-string">"androidx.appfunctions:appfunctions:1.0.0-alpha01"</span>)
+
+    <span class="token-comment">// Service for handling agent execution</span>
+    <span class="token-function">implementation</span>(<span class="token-string">"androidx.appfunctions:appfunctions-service:1.0.0-alpha01"</span>)
+
+    <span class="token-comment">// KSP compiler — generates metadata</span>
+    <span class="token-function">ksp</span>(<span class="token-string">"androidx.appfunctions:appfunctions-compiler:1.0.0-alpha01"</span>)
+}
+
+<span class="token-comment">// KSP config</span>
+<span class="token-keyword">ksp</span> {
+    <span class="token-function">arg</span>(<span class="token-string">"aggregateAppFunctions"</span>, <span class="token-string">"true"</span>)
+}</code>
+      </div>
+
+      <div class="glass-card glass-card--compact mt-lg" style="max-width: 650px;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          <span class="inline-icon">💡</span>
+          <span class="highlight">aggregateAppFunctions = true</span> ensures all functions across modules are collected into a single metadata file
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 7 — Defining an AppFunction
+       ============================================================ -->
+  <div class="slide" id="slide-7" data-slide="7">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="top: 5%; right: -10%;"></div>
+
+    <div class="slide-content stagger">
+      <div class="slide-eyebrow">Code</div>
+
+      <h2 class="slide-title">Defining an AppFunction</h2>
+
+      <div class="code-block mt-lg" data-lang="Kotlin">
+<code><span class="token-comment">/**
+ * Find people or groups by name, phone number, or email.
+ *
+ * MUST be called before [sendMessage] or [makeCall]
+ * to resolve the correct contact endpoint.
+ *
+ * @param query the name, number, or email to search for
+ * @return list of matching contacts with endpoint values
+ */</span>
+<span class="token-annotation">@AppFunction</span>(<span class="token-property">isDescribedByKDoc</span> = <span class="token-keyword">true</span>)
+<span class="token-keyword">suspend fun</span> <span class="token-function">searchContacts</span>(
+    <span class="token-param">appFunctionContext</span>: <span class="token-type">AppFunctionContext</span>,
+    <span class="token-param">query</span>: <span class="token-type">String</span>
+): <span class="token-type">List</span>&lt;<span class="token-type">ContactSearchResult</span>&gt;</code>
+      </div>
+
+      <div class="glass-card glass-card--compact mt-lg" style="max-width: 600px;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary);">
+          <span class="inline-icon">📖</span>
+          <span class="highlight">KDoc is part of the contract</span> — Gemini reads it to understand how to use this function
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 8 — KDoc = Agent Behavior
+       ============================================================ -->
+  <div class="slide" id="slide-8" data-slide="8">
+    <div class="grid-bg"></div>
+    <div class="orb orb--coral" style="bottom: -10%; right: -5%;"></div>
+
+    <div class="slide-content stagger">
+      <div class="slide-eyebrow">Best Practice</div>
+
+      <h2 class="slide-title">KDoc = Agent Behavior</h2>
+
+      <p class="slide-subtitle">The quality of your KDoc directly controls how well the agent uses your function</p>
+
+      <div class="comparison mt-lg">
+        <div class="comparison-bad">
+          <div class="comparison-label">❌ Vague</div>
+<pre style="white-space: pre-wrap; font-size: 0.8rem; line-height: 1.6;">/**
+ * Searches contacts.
+ */</pre>
+          <p class="mt-md" style="font-size: 0.75rem; color: var(--text-tertiary);">
+            Agent doesn't know when to call this, what params to use, or what comes next
+          </p>
+        </div>
+        <div class="comparison-good">
+          <div class="comparison-label">✅ Descriptive</div>
+<pre style="white-space: pre-wrap; font-size: 0.8rem; line-height: 1.6;">/**
+ * Find people or groups by name.
+ * MUST be called before
+ * [sendMessage] or [makeCall]
+ * to resolve the correct
+ * contact endpoint.
+ *
+ * @param query the name, number,
+ * or email to search for
+ * @return list of matching contacts
+ * with endpoint values
+ */</pre>
+        </div>
+      </div>
+
+      <div class="glass-card glass-card--accent glass-card--compact mt-lg" style="max-width: 550px; margin: var(--space-lg) auto 0;">
+        <p style="font-size: 0.9rem; text-align: center; color: var(--text-secondary);">
+          <span class="text-gradient" style="font-weight: 700;">KDoc = the agent instruction layer</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 9 — Required Setup
+       ============================================================ -->
+  <div class="slide" id="slide-9" data-slide="9">
+    <div class="grid-bg"></div>
+    <div class="orb orb--purple" style="top: -15%; left: 10%;"></div>
+
+    <div class="slide-content stagger">
+      <div class="slide-eyebrow">Configuration</div>
+
+      <h2 class="slide-title">Required Setup</h2>
+
+      <div class="cards-grid cards-grid--3 mt-lg">
+        <div class="glass-card">
+          <div class="card-icon">📋</div>
+          <div class="card-title">AndroidManifest.xml</div>
+          <div class="xml-block mt-md">
+<code><span class="token-operator">&lt;</span><span class="token-keyword">service</span>
+  <span class="token-property">android:name</span>=<span class="token-string">".PlatformApp
+    FunctionService"</span>
+  <span class="token-property">android:exported</span>=<span class="token-string">"true"</span>
+  <span class="token-property">android:permission</span>=<span class="token-string">"android
+  .permission.BIND_
+  APP_FUNCTION_SERVICE"</span><span class="token-operator">/&gt;</span></code>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-icon">📄</div>
+          <div class="card-title">app_metadata.xml</div>
+          <div class="xml-block mt-md">
+<code><span class="token-operator">&lt;</span><span class="token-keyword">app-metadata</span><span class="token-operator">&gt;</span>
+  <span class="token-operator">&lt;</span><span class="token-keyword">description</span><span class="token-operator">&gt;</span>
+    <span class="token-string">A chat app that
+    lets you search
+    contacts, send
+    messages, and
+    make calls.</span>
+  <span class="token-operator">&lt;/</span><span class="token-keyword">description</span><span class="token-operator">&gt;</span>
+<span class="token-operator">&lt;/</span><span class="token-keyword">app-metadata</span><span class="token-operator">&gt;</span></code>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <div class="card-icon">🔧</div>
+          <div class="card-title">Configuration Provider</div>
+          <div class="code-block mt-md" style="font-size: 0.7rem; padding: var(--space-md);">
+<code><span class="token-keyword">class</span> <span class="token-type">MyAppFunctions</span> :
+  <span class="token-type">AppFunctionConfiguration
+  .Provider</span> {
+
+  <span class="token-keyword">override fun</span> <span class="token-function">getConfig</span>()
+    = <span class="token-type">AppFunctionConfiguration</span>
+      .<span class="token-function">Builder</span>()
+      .<span class="token-function">build</span>()
+}</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 10 — Verify with ADB
+       ============================================================ -->
+  <div class="slide" id="slide-10" data-slide="10">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="bottom: -15%; left: -10%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">Testing</div>
+
+      <h2 class="slide-title">Verify with ADB</h2>
+
+      <p class="slide-subtitle" style="margin: 0 auto;">
+        Confirm your functions are registered on the device
+      </p>
+
+      <div class="terminal mt-xl">
+        <div class="terminal-header">
+          <span class="terminal-dot terminal-dot--red"></span>
+          <span class="terminal-dot terminal-dot--yellow"></span>
+          <span class="terminal-dot terminal-dot--green"></span>
+        </div>
+        <div>
+          <span class="prompt">$ </span><span class="cmd">adb shell cmd app_function list-app-functions \</span><br>
+          <span class="cmd">  --package com.example.chatapp</span><br><br>
+          <span class="output">Package: com.example.chatapp</span><br>
+          <span class="output">  Function: searchContacts</span><br>
+          <span class="output">    Params: query (String)</span><br>
+          <span class="output">    Returns: List&lt;ContactSearchResult&gt;</span><br>
+          <span class="output">    Described by KDoc: true</span><br><br>
+          <span class="output">  Function: sendMessage</span><br>
+          <span class="output">    Params: endpointValue (String), message (String)</span><br>
+          <span class="output">    Returns: SendResult</span><br>
+          <span class="output">    Described by KDoc: true</span><br><br>
+          <span class="output">  Function: makeCall</span><br>
+          <span class="output">    Params: endpointValue (String)</span><br>
+          <span class="output">    Returns: CallResult</span><br>
+          <span class="output">    Described by KDoc: true</span><br><br>
+          <span class="output" style="color: var(--g-green);">✓ 3 functions registered</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 11 — Live Demo
+       ============================================================ -->
+  <div class="slide" id="slide-11" data-slide="11">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="top: 20%; left: -15%;"></div>
+    <div class="orb orb--purple" style="bottom: 10%; right: -10%;"></div>
+    <div class="orb orb--coral" style="top: -5%; right: 30%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">🎬 Live</div>
+
+      <h2 class="slide-title slide-title--hero" style="font-size: 3.5rem;">
+        Live Demo
+      </h2>
+
+      <p class="slide-subtitle" style="margin: 0 auto; font-size: 1.3rem;">
+        Let's see Gemini use the app
+      </p>
+
+      <div class="glass-card glass-card--accent mt-xl" style="max-width: 650px; margin: 0 auto;">
+        <p style="font-size: 1.1rem; text-align: center; color: var(--text-primary); font-style: italic; line-height: 1.6;">
+          "Find Alice and send her a hello message"
+        </p>
+      </div>
+
+      <div class="demo-flow mt-xl">
+        <div class="demo-step" style="border-color: rgba(66,133,244,0.3);">
+          <span class="step-icon">🔍</span>
+          searchContacts("Alice")
+        </div>
+        <span class="demo-connector">→</span>
+        <div class="demo-step" style="border-color: rgba(0,230,118,0.3);">
+          <span class="step-icon">💬</span>
+          sendMessage(endpoint, "hello")
+        </div>
+        <span class="demo-connector">→</span>
+        <div class="demo-step" style="border-color: rgba(253,216,53,0.3);">
+          <span class="step-icon">✅</span>
+          Success
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 12 — Execution Flow
+       ============================================================ -->
+  <div class="slide" id="slide-12" data-slide="12">
+    <div class="grid-bg"></div>
+    <div class="orb orb--purple" style="top: -10%; right: -5%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">Under the Hood</div>
+
+      <h2 class="slide-title">Execution Flow</h2>
+
+      <div class="sequence-diagram mt-xl">
+        <div class="sequence-actors">
+          <div class="sequence-actor" style="border-color: rgba(161,66,244,0.3);">👤 User</div>
+          <div class="sequence-actor" style="border-color: rgba(66,133,244,0.3);">🤖 Gemini Agent</div>
+          <div class="sequence-actor" style="border-color: rgba(0,230,118,0.3);">📱 Your App</div>
+        </div>
+
+        <div class="sequence-message">
+          <span class="msg-label" style="min-width: 150px;">"Find Alice, say hi"</span>
+          <div class="arrow-line"></div>
+          <span style="width: 150px;"></span>
+        </div>
+
+        <div class="sequence-message">
+          <span style="width: 150px;"></span>
+          <span class="msg-label">searchContacts("Alice")</span>
+          <div class="arrow-line"></div>
+        </div>
+
+        <div class="sequence-message" style="flex-direction: row-reverse;">
+          <span style="width: 150px;"></span>
+          <span class="msg-label" style="color: var(--g-green-light);">[ {name: "Alice", endpoint: "..."} ]</span>
+          <div class="arrow-line" style="transform: scaleX(-1);"></div>
+        </div>
+
+        <div class="sequence-message">
+          <span style="width: 150px;"></span>
+          <span class="msg-label">sendMessage(endpoint, "hi")</span>
+          <div class="arrow-line"></div>
+        </div>
+
+        <div class="sequence-message" style="flex-direction: row-reverse;">
+          <span style="width: 150px;"></span>
+          <span class="msg-label" style="color: var(--g-green-light);">{ success: true }</span>
+          <div class="arrow-line" style="transform: scaleX(-1);"></div>
+        </div>
+
+        <div class="sequence-message" style="flex-direction: row-reverse;">
+          <span class="msg-label" style="min-width: 150px; color: var(--g-green-light);">"Done! ✅"</span>
+          <div class="arrow-line" style="transform: scaleX(-1);"></div>
+          <span style="width: 150px;"></span>
+        </div>
+      </div>
+
+      <div class="glass-card glass-card--compact mt-lg" style="max-width: 500px;">
+        <p style="font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+          <span class="highlight">endpointValue</span> chaining connects function outputs to inputs
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 13 — The MCP Analogy
+       ============================================================ -->
+  <div class="slide" id="slide-13" data-slide="13">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="top: 10%; left: -10%;"></div>
+    <div class="orb orb--coral" style="bottom: -5%; right: 5%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">The Big Picture</div>
+
+      <h2 class="slide-title">AppFunctions <span class="text-gradient">≈</span> MCP for Your App</h2>
+
+      <div class="mcp-analogy mt-xl">
+        <div class="mcp-side">
+          <div class="glass-card" style="border-color: rgba(161,66,244,0.25);">
+            <div class="card-title" style="color: var(--g-blue-light); font-size: 0.9rem;">🌐 MCP (Model Context Protocol)</div>
+            <div class="card-text mt-sm">
+              <div style="margin-bottom: 6px;">• Server exposes <strong>tools</strong></div>
+              <div style="margin-bottom: 6px;">• Tools have schemas + descriptions</div>
+              <div style="margin-bottom: 6px;">• LLM discovers & invokes tools</div>
+              <div>• Works across network boundaries</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mcp-vs">≈</div>
+
+        <div class="mcp-side">
+          <div class="glass-card" style="border-color: rgba(0,230,118,0.25);">
+            <div class="card-title" style="color: var(--g-green-light); font-size: 0.9rem;">📱 AppFunctions</div>
+            <div class="card-text mt-sm">
+              <div style="margin-bottom: 6px;">• App exposes <strong>@AppFunction</strong>s</div>
+              <div style="margin-bottom: 6px;">• KDoc + types = self-describing</div>
+              <div style="margin-bottom: 6px;">• Agent discovers & invokes functions</div>
+              <div>• Works on-device via Android system</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card glass-card--accent glass-card--compact mt-xl" style="max-width: 700px;">
+        <p style="font-size: 0.95rem; text-align: center; color: var(--text-secondary); line-height: 1.6;">
+          MCP lets LLMs talk to <strong>servers</strong>. AppFunctions let agents talk to <strong>Android apps</strong>.<br>
+          <span class="text-gradient" style="font-weight: 700;">Same philosophy. Native on mobile.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 14 — Current Status
+       ============================================================ -->
+  <div class="slide" id="slide-14" data-slide="14">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="top: -10%; left: -5%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">Status</div>
+
+      <h2 class="slide-title">Current Status</h2>
+
+      <table class="status-table mt-xl">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Platform API</td>
+            <td><span class="status-badge status-badge--available">● Available (Android 16+)</span></td>
+          </tr>
+          <tr>
+            <td>Jetpack Library</td>
+            <td><span class="status-badge status-badge--alpha">● Alpha</span></td>
+          </tr>
+          <tr>
+            <td>ADB Testing</td>
+            <td><span class="status-badge status-badge--available">● Working</span></td>
+          </tr>
+          <tr>
+            <td>AppFunctionStudio</td>
+            <td><span class="status-badge status-badge--preview">● Preview</span></td>
+          </tr>
+          <tr>
+            <td>Gemini Integration</td>
+            <td><span class="status-badge status-badge--preview">● Private Preview</span></td>
+          </tr>
+          <tr>
+            <td>Full Rollout</td>
+            <td><span class="status-badge status-badge--future">○ Future</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 15 — Best Practices
+       ============================================================ -->
+  <div class="slide" id="slide-15" data-slide="15">
+    <div class="grid-bg"></div>
+    <div class="orb orb--purple" style="top: -15%; right: 10%;"></div>
+
+    <div class="slide-content stagger">
+      <div class="slide-eyebrow">Takeaways</div>
+
+      <h2 class="slide-title">Best Practices</h2>
+
+      <div class="cards-grid cards-grid--2 mt-xl" style="max-width: 900px;">
+        <div class="glass-card glass-card--accent">
+          <div class="card-icon">📖</div>
+          <div class="card-title">KDoc Is the Contract</div>
+          <div class="card-text">Your KDoc is what the agent reads to understand function behavior, parameters, ordering, and edge cases. Write it like API documentation for an LLM.</div>
+        </div>
+        <div class="glass-card" style="border-color: rgba(0,230,118,0.2);">
+          <div class="card-icon">🧩</div>
+          <div class="card-title">Design Composable Functions</div>
+          <div class="card-text">Build small, focused functions that chain together. Let the agent orchestrate the workflow instead of building monolithic endpoints.</div>
+        </div>
+        <div class="glass-card" style="border-color: rgba(253,216,53,0.2);">
+          <div class="card-icon">⚠️</div>
+          <div class="card-title">Make Errors Agent-Readable</div>
+          <div class="card-text">Return structured error messages the agent can interpret and recover from. Don't throw exceptions — return error states in your result types.</div>
+        </div>
+        <div class="glass-card" style="border-color: rgba(245,56,160,0.2);">
+          <div class="card-icon">🧪</div>
+          <div class="card-title">Test Early with ADB</div>
+          <div class="card-text">Use ADB commands and AppFunctionStudio to verify your functions are properly registered and discoverable before waiting for agent integration.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 16 — Resources
+       ============================================================ -->
+  <div class="slide" id="slide-16" data-slide="16">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="bottom: -10%; right: -10%;"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">Learn More</div>
+
+      <h2 class="slide-title">Resources</h2>
+
+      <div class="resource-links mt-xl">
+        <a href="https://developer.android.com/ai/appfunctions" target="_blank" class="resource-link">
+          <span class="link-icon">📚</span>
+          <div>
+            <div>Official Documentation</div>
+            <div class="link-url">developer.android.com/ai/appfunctions</div>
+          </div>
+        </a>
+        <a href="https://github.com/android/platform-samples" target="_blank" class="resource-link">
+          <span class="link-icon">💻</span>
+          <div>
+            <div>Android Platform Samples</div>
+            <div class="link-url">github.com/android/platform-samples</div>
+          </div>
+        </a>
+        <a href="https://developer.android.com/studio" target="_blank" class="resource-link">
+          <span class="link-icon">🛠️</span>
+          <div>
+            <div>AppFunctionStudio (Android Studio)</div>
+            <div class="link-url">Built into Android Studio preview</div>
+          </div>
+        </a>
+        <a href="https://modelcontextprotocol.io" target="_blank" class="resource-link">
+          <span class="link-icon">🌐</span>
+          <div>
+            <div>Model Context Protocol (MCP)</div>
+            <div class="link-url">modelcontextprotocol.io — the pattern AppFunctions follows</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SLIDE 17 — Closing
+       ============================================================ -->
+  <div class="slide" id="slide-17" data-slide="17">
+    <div class="grid-bg"></div>
+    <div class="orb orb--blue" style="top: 20%; left: -10%;"></div>
+    <div class="orb orb--purple" style="bottom: 20%; right: -10%;"></div>
+    <div class="orb orb--coral" style="top: -5%; right: 20%;"></div>
+
+    <div class="particle-ring" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+    <div class="particle-ring" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+    <div class="particle-ring" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+
+    <div class="slide-content slide-content--centered stagger">
+      <div class="slide-eyebrow">
+        <span>✨</span>
+        <span>Thank You</span>
+      </div>
+
+      <h2 class="slide-title slide-title--hero" style="font-size: 3.2rem;">
+        From Android Apps to MCPs<br>with AppFunctions
+      </h2>
+
+      <p class="slide-big-text" style="font-size: 1.4rem; color: var(--text-secondary); max-width: 700px; line-height: 1.6;">
+        Your app is no longer just an app —<br>
+        <span class="text-gradient" style="font-weight: 700; font-size: 1.6rem;">it's an MCP server for AI agents</span>
+      </p>
+
+      <div class="mt-xl" style="display: flex; flex-direction: column; align-items: center; gap: var(--space-md);">
+        <img src="qr-code.png" alt="QR Code for Social Contact" style="width: 150px; height: 150px; border-radius: var(--radius-md); box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: var(--space-sm);">
+        <p class="slide-speaker" style="margin: 0;">
+          <strong>Qamar A. Safadi</strong>
+        </p>
+        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-top: 4px;">Senior Android Engineer at Yassir 💜</p>
+        <div style="display: flex; gap: var(--space-xl); font-size: 0.85rem; color: var(--text-tertiary); margin-top: 8px;">
+          <span>🐦 @QamarSafadi</span>
+          <span>💻 GitHub</span>
+          <span>🔗 LinkedIn</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="presentation.js"></script>
+</body>
+</html>
