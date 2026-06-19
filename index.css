@@ -70,11 +70,11 @@
     --text-tertiary: #80868b;
     --text-accent: #1a73e8;
 
-    /* Gradients — Light and clean with core Google brand colors */
-    --gradient-hero: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%);
-    --gradient-io: linear-gradient(90deg, var(--g-blue), var(--g-red), var(--g-yellow), var(--g-green), var(--g-blue));
-    --gradient-gemini: var(--gradient-io);
-    --gradient-gemini-text: var(--gradient-io);
+    /* Gradients — Android + GDE Scheme */
+    --gradient-hero: linear-gradient(135deg, #ffffff 0%, #f4f7fc 50%, #eaf1f8 100%);
+    --gradient-android-gde: linear-gradient(90deg, #4285F4, #3DDC84, #4285F4);
+    --gradient-gemini: var(--gradient-android-gde);
+    --gradient-gemini-text: var(--gradient-android-gde);
     --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 100%);
     --gradient-glow: radial-gradient(ellipse at 50% 0%, rgba(66,133,244,0.08) 0%, rgba(234,67,53,0.04) 40%, transparent 60%);
 
